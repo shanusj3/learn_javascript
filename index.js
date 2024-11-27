@@ -1,11 +1,7 @@
-Array.prototype.myMap = function (cb) {
-  let temArr = [];
+Array.prototype.myReduce = function (cb, initialValue) {
+  let accumulator = initialValue;
   for (let i = 0; i < this.length; i++) {
-    temArr.push(cb(this[i], i, this));
+    accumulator = accumulator ? cb(accumulator, this[i], this) : this[i];
   }
-  return temArr;
+  return accumulator;
 };
-
-const numArr = [1, 2, 3, 4, 4];
-const newArr = numArr.myMap((val) => val + 1);
-console.log(newArr);
